@@ -7,3 +7,15 @@ before-install:
 
 script:
   docker run -e CI=true crypticycle/docker-default-react-app npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-2"
+  app: "docker-react-app"
+  env: "Docker-react-app-env"
+  bucket-name: "elasticbeanstalk-eu-west-2-924459580389"
+  bucket-path: "docker-react-app/"
+  on:
+    branch: main
+  access_key_id: $AWS-ACCESS-KEY-ID
+  secret_access_key: "$AWS-SECRET-ACCESS-KEY"
